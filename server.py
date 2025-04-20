@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request
 import requests
 
@@ -18,4 +19,8 @@ def notify():
         return {"status": "OK", "esp_response": response.text}
     except Exception as e:
         return {"error": str(e)}, 500
+
+# Портты орта айнымалысы арқылы алу
+port = int(os.environ.get("PORT", 5000))  # Портты environment айнымалысынан алу
+app.run(host="0.0.0.0", port=port)  # барлық интерфейстерде тыңдаңыз
 
